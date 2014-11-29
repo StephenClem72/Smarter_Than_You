@@ -1,42 +1,42 @@
-#  Controller.rb
 require_relative "model.rb"
-
+require_relative "view.rb"
 
 class Controller
 
- include View
-
-  def initialize(get_questions)
-    @question_pool = []
-    @deck = {"What is OOP?" => "Object Oriented Programming"}
+  def initialize
+    @deck = Model.get_question(1)
     @score = 0
   end
 
-  def game_start
-   self.greeting
-    ask_question
+  def game_loop
+    View.greeting
+    ask_question until @deck.empty?
+    View.end_game(@score)
   end
+
+  private
 
   def ask_question
-    #@question = @question_pool.shift
-    puts @deck.keys[0]
-    get_answer
+
+
+    @current_question = @deck.shift
+
+    answer = View.ask_question(@current_question.first)
+
+    answer_correct = check_answer?(answer)
+
+    @score += 1 if answer_correct
+
+    View.evaluated_answer(answer_correct)
   end
 
-  def get_answer
-    answer = gets.chomp
-    if answer == @deck.values[0]
-      View.correct_answer?(answer)
-      # puts ["Excellent", "Awesome", "Righteous"].sample
-      @score += 1
-    else
-      # puts "Ouch, that hurts."
-      View.incorrect_answer
-    end
-    ask_question until @question_pool.empty?
+
+
+  def check_answer?(answer)
+    answer == @current_question[1]
   end
 end
 
 game = Controller.new
-game.game_start
+game.game_loop
 
