@@ -1,12 +1,12 @@
 #  Controller.rb
-#require_relative "model.rb"
+require_relative "model.rb"
 
 
 class Controller
 
  include View
 
-  def initialize(question_pool = nil)
+  def initialize(get_questions)
     @question_pool = []
     @deck = {"What is OOP?" => "Object Oriented Programming"}
     @score = 0
@@ -26,11 +26,12 @@ class Controller
   def get_answer
     answer = gets.chomp
     if answer == @deck.values[0]
-      correct_answer?(answer)
+      View.correct_answer?(answer)
       # puts ["Excellent", "Awesome", "Righteous"].sample
       @score += 1
     else
-      puts "Ouch, that hurts."
+      # puts "Ouch, that hurts."
+      View.incorrect_answer
     end
     ask_question until @question_pool.empty?
   end
