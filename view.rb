@@ -24,4 +24,23 @@ class View
     puts "Incorrect dude"
   end
 
+  def self.correct_animation(string)
+    message=string.split("")
+    print=[]
+    while print.length < string.length
+      print << message.shift
+      self.clear_screen
+      p print.join
+      sleep 1
+    end
+  end
+
+  def self.clear_screen
+    print "\e[H\e[2J"
+  end
+
+  def self.end_game(score)
+    p "Hey! NICE GAME, You scored #{score}"
+  end
+
 end
