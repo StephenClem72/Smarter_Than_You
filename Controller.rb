@@ -10,14 +10,14 @@ class Controller
 
   def game_loop
     View.greeting
-    ask_question
+    ask_question until @deck.empty?
+    View.end_game(@score)
   end
 
   private
 
   def ask_question
-    # @question = @question_pool.shift
-    # puts @deck.keys[0]
+
 
     @current_question = @deck.shift
 
@@ -29,6 +29,8 @@ class Controller
 
     View.evaluated_answer(answer_correct)
   end
+
+
 
   def check_answer?(answer)
     answer == @current_question[1]
