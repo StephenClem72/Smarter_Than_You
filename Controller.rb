@@ -4,7 +4,7 @@ require_relative "view.rb"
 class Controller
 
   def initialize
-    @deck = Model.get_question(1)
+    @deck = Model.get_question(5)
     @score = 0
   end
 
@@ -17,8 +17,6 @@ class Controller
   private
 
   def ask_question
-
-
     @current_question = @deck.shift
 
     answer = View.ask_question(@current_question.first)
