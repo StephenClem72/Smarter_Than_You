@@ -1,26 +1,26 @@
 class View
 
-  def greeting
+  def self.greeting
     puts "Welcome to Ruby"
-    name=gets.chomp
+    name = gets.chomp
     return name
   end
 
-  def evaluated_answer(true_false)
-    true_false? correct_answer : incorrect_answer
+  def self.evaluated_answer(true_false)
+    true_false ? self.correct_answer : self.incorrect_answer
   end
 
-  def ask_question(question)
+  def self.ask_question(question)
     puts question
-    answer=gets.chomp
+    answer = gets.chomp
     return answer
   end
 
-  def correct_answer
+  def self.correct_answer
     puts "Great"
   end
 
-  def incorrect_answer
+  def self.incorrect_answer
     puts "Incorrect dude"
   end
 

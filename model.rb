@@ -15,7 +15,7 @@ class Model
 
     # p list_of_questions
 
-    Hash[list_of_questions.sample(num_of_questions)]
+    Hash[list_of_questions.sample(num_of_questions)].to_a
   end
 end
 
@@ -23,5 +23,5 @@ end
 # ---
 # run time
 
-# p Model.get_question(4)
+# puts Model.get_question(5)
 
